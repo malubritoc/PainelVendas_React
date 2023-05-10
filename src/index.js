@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Login from './rotas/Login';
 import Dashboard from './rotas/Dashboard';
+import MostrarVendas from './rotas/MostrarVendas';
+import NovaVenda from './rotas/NovaVenda';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -13,8 +15,10 @@ root.render(
       <Routes>
         <Route path='/login' element={<Login />}/>
         <Route path='/vendas/usuario/:id' element={<p>oi</p>}/>
-        <Route path='/usuario/:id/dashboard' element={<Dashboard/>}/>
-        <Route path='usuario/:id/perfil' element={<p>ola</p>}/>
+        <Route path='/usuario/2/dashboard' element={<Dashboard/>}/>
+        <Route path='usuario/2/perfil' element={<p>ola</p>}/>
+        <Route path='/usuario/2/cadastrarvenda' element={<MostrarVendas />} />
+        <Route path='/usuario/2/cadastrarvenda_new' element={<NovaVenda />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

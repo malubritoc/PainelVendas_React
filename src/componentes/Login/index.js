@@ -80,7 +80,7 @@ function Log_In() {
                 <InputBox>
                     <Input placeholder="Nome de acesso"/>
                     <Input placeholder="Senha"/>
-                    <Link to='/usuario/:id/dashboard'>
+                    <Link to='/usuario/2/dashboard'>
                         <BotaoEntrar>
                             <strong>
                                 Entrar

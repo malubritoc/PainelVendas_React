@@ -1,8 +1,14 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
+
+const DashboardContainer = styled.div`
+    display: flex;
+`
 
 const Coluna = styled.div`
+    display: grid;
     width: 200px;
-    height: 100%;
+    height: 790px;
     background-color: #EDEDED;
     border-right: 1px solid rgba(153, 159, 162, 0.5);
 `
@@ -18,9 +24,13 @@ const TituloColuna = styled.p`
 
 function PresentDashboard() {
     return (
-        <Coluna>
-        <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
-        </Coluna>
+        <DashboardContainer>
+            <Coluna>
+            <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
+            <Link to='/usuario/2/dashboard'>Dashboard</Link>
+            <Link to='/usuario/2/cadastrarvenda'>Cadastrar venda</Link>
+            </Coluna>
+        </DashboardContainer>
     )
 }
 
