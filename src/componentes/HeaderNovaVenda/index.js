@@ -10,16 +10,16 @@ const HeaderContainer = styled.div`
 `
 
 const TextNovaVenda = styled.div`
-    font-size: 26px;
+    font-size: 18px;
     color: white;
-    margin-top: 6px;
-    margin-left: 50px;
+    margin-top: 12px;
+    margin-left: 220px;
 `
 
 function HeaderNovaVenda() {
     return (
         <HeaderContainer>
-            <TextNovaVenda>Cadastrar venda</TextNovaVenda>
+            <TextNovaVenda><strong>Cadastrar venda</strong></TextNovaVenda>
         </HeaderContainer>
     )
 }

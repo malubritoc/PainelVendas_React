@@ -1,21 +1,21 @@
 import HeaderUsuario from '../componentes/HeaderUsuario'
-import PresentVendas from '../componentes/MostrarVendas';
+import PresentPerfil from '../componentes/Perfil';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`
   width: 100vw;
-  height: 120vh;
+  height: 100vh;
   background-color: #D9D9D9;
 `
 
-function CadastrarVendas() {
+function Perfil() {
 
     return (
       <AppContainer>
         <HeaderUsuario/>
-        <PresentVendas/>
+        <PresentPerfil/>
       </AppContainer>
     );
   }
   
-  export default CadastrarVendas;
+  export default Perfil;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import { getVendas } from '../../servicos/vendas';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const VendasContainer = styled.div`
     display: flex;
@@ -16,12 +17,26 @@ const Coluna = styled.div`
 `
 
 const TituloColuna = styled.p`
-    font-family: 'Inter';
-    font-size: 12px;
+    font-family: 'Arial';
+    font-size: 9px;
     margin: 0;
     padding-left: 25px;
     padding-top: 30px;
+    height: 20px;
+    color: #878B8D
     
+`
+const OpcoesColuna = styled.div`
+    height: 70px;
+    display: grid;
+    font-family: 'Arial';
+    font-size: 12px;
+    margin-left: 60px;
+    margin-top: 10px;
+`
+
+const BoxColuna = styled.div`
+    height: 150px;
 `
 
 const ColunaFiltro = styled.div`
@@ -61,6 +76,7 @@ const TabelaVendas = styled.table`
         text-align: center;
         padding: 10px;
         color: rgba(24, 28, 50, 0.5);
+        
     }
     
     tr:first-child {
@@ -76,13 +92,37 @@ const BotaoNovaVenda = styled.button`
     cursor: pointer;
     font-size: 22px;
     align-text: center;
+`
+
+const BotaoEditarVenda = styled.button` 
+    width: 15px;
+    height: 15px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 22px;
+    align-text: center;
     padding: 0;
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-top: 0px;
+    margin-left: 0px;
+`
+
+const ExcluirImage = styled.img`
+    width: 15px;
 `
 
 function PresentVendas() {
     const [ vendas, setVendas ] = useState([])
+
+    function handleRemover(vendaId){
+        axios.delete('http://localhost:8000/vendas/' + vendaId)
+        .then(response =>{
+            alert('deletado com sucesso!');
+        })
+        .catch(error =>{
+            alert('Erro na remoção. Tente novamente.');
+            console.log(error);
+        })
+    }
 
     useEffect( () => {
     async function fetchVendas() {
@@ -95,14 +135,22 @@ function PresentVendas() {
     }
 
     fetchVendas()
-  }, [])
+  }, [handleRemover])
 
     return (
         <VendasContainer>
             <Coluna>
-            <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
-            <Link to='/usuario/2/dashboard'>Dashboard</Link>
-            <Link to='/usuario/2/cadastrarvenda'>Cadastrar venda</Link>
+            <BoxColuna>
+                <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
+                <OpcoesColuna>
+                    <Link to='/usuario/2/dashboard' style={{ textDecoration: 'none', color: '#181C32' }}>Dashboard</Link>
+                    <br/>
+                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#181C32' }}>Cadastrar venda</Link>
+                    <br/>
+                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#181C32' }}>Perfil</Link>
+                    <p style={{ color: '#181C32'}}>Comissões</p>
+                </OpcoesColuna>
+            </BoxColuna>
             </Coluna>
             <ColunaFiltro />
             <VendasBox>
@@ -116,11 +164,12 @@ function PresentVendas() {
                         <th>Nome</th>
                         <th>Data</th>
                         <th>Telefone</th>
-                        <th>Frete</th>
-                        <th>Valor</th>
+                        <th>Frete (R$)</th>
+                        <th>Valor (R$)</th>
+                        <th />
                     </tr>
                     <tr>
-                        <td>                        
+                        <td>                         
                             {vendas.map((venda,i) => {
                             return (
                             <p>{venda.id}</p>
@@ -143,9 +192,10 @@ function PresentVendas() {
                         </td>
                         <td>                        
                             {vendas.map((venda,i) => {
-                            return (
-                            <p>{venda.createdAt}</p>
-                            ) 
+                                const data = venda.createdAt.split('T')[0];
+                                return (
+                                    <p>{data}</p>
+                                ) 
                             })}
                         </td>
                         <td>                        
@@ -169,7 +219,19 @@ function PresentVendas() {
                             ) 
                             })}
                         </td>
+                        <td>                        
+                            {vendas.map((venda,i) => {
+                            return (
+                            <p><BotaoEditarVenda>
+                                    <a onClick={() => handleRemover(venda.id)}>
+                                        <ExcluirImage src ='https://cdn-icons-png.flaticon.com/512/1214/1214428.png'></ExcluirImage>
+                                    </a>
+                                </BotaoEditarVenda></p>
+                            ) 
+                            })}
+                        </td>
                     </tr>
+
                 </TabelaVendas>
             </VendasBox>
         </VendasContainer>
