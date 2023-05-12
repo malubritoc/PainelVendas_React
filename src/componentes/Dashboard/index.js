@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
+import GraficoVendasPorTempo from "../GraficoVendasPorTempo";
 
 const DashboardContainer = styled.div`
     display: flex;
@@ -108,7 +109,7 @@ function PresentDashboard() {
             </Coluna>
             <BoxGraficos>
             <BaseEvolucao>
-                oie
+                <GraficoVendasPorTempo></GraficoVendasPorTempo>
             </BaseEvolucao>
             <BoxInfos>
                 <BaseInfos />
