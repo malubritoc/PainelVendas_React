@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
 import FormularioPerfil from "../FormularioPefil";
+import vendas from '../../imagens/cadastrarvendas.png'
+import dashboard from '../../imagens/dashboard.svg'
+import perfil_s from '../../imagens/perfil_selec.png'
+import comissoes from '../../imagens/comissoes.png'
+import editar from '../../imagens/editarperfil.png'
+import notif from '../../imagens/notificacoes.png'
+import seguranca from '../../imagens/seguranca.png'
+import ajuda from '../../imagens/ajuda.png'
+
 
 const PerfilContainer = styled.div`
     display: flex;
@@ -9,7 +18,7 @@ const PerfilContainer = styled.div`
 const Coluna = styled.div`
     display: grid;
     width: 200px;
-    height: 790px;
+    height: 800px;
     background-color: #EDEDED;
     border-right: 1px solid rgba(153, 159, 162, 0.5);
 `
@@ -22,6 +31,11 @@ const TituloColuna = styled.p`
     padding-top: 30px;
     height: 20px;
     color: #878B8D
+`
+
+const IconsColuna = styled.img`
+    width: 10px;
+    margin-right: 5px;
 `
 
 const OpcoesColuna = styled.div`
@@ -53,8 +67,8 @@ const OpcoesBoxAzul = styled.div`
     display: grid;
     font-family: 'Arial';
     font-size: 12px;
-    margin-left: 30px;
-    margin-top: 40px;
+    margin-left: 0px;
+    margin-top: 10px;
     color: #FFF;
 `
 
@@ -78,22 +92,58 @@ function PresentPerfil() {
             <BoxColuna>
                 <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
                 <OpcoesColuna>
-                    <Link to='/usuario/2/dashboard' style={{ textDecoration: 'none', color: '#181C32' }}>Dashboard</Link>
+                    <Link to='/usuario/2/dashboard' style={{ display: 'flex',textDecoration: 'none', color: '#181C32' }}>
+                        <IconsColuna
+                            src={dashboard} 
+                        />
+                        Dashboard</Link>
                     <br/>
-                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#181C32' }}>Cadastrar venda</Link>
+                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#181C32' }}>
+                        <IconsColuna
+                            src={vendas} 
+                        />
+                        Cadastrar venda</Link>
                     <br/>
-                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#181C32' }}>Perfil</Link>
-                    <p style={{ color: '#181C32'}}>Comissões</p>
+                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#0988A8' }}>
+                        <IconsColuna
+                            src={perfil_s} 
+                        />
+                        Perfil</Link>
+                    <p style={{ color: '#181C32'}}>
+                        <IconsColuna
+                            src={comissoes} 
+                        />
+                        Comissões</p>
                 </OpcoesColuna>
             </BoxColuna>
             </Coluna>
             <BoxAzul>
                 <OpcoesBoxAzul>
-                    <Link to='/usuario/2/perfil' style={{ color: '#FCBB19'}}>Editar perfil</Link>
+                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none',color: '#FCBB19'}}>
+                        <IconsColuna
+                        src={editar}
+                        />
+                        Editar perfil
+                    </Link>
                     <br />
-                    <p>Notificações</p>
-                    <p>Segurança</p>
-                    <p>Ajuda</p>
+                    <p>
+                        <IconsColuna
+                            src={notif}
+                        />
+                        Notificações
+                    </p>
+                    <p>
+                        <IconsColuna
+                            src={seguranca}
+                        />
+                        Segurança
+                    </p>
+                    <p>
+                        <IconsColuna
+                            src={ajuda}
+                        />
+                        Ajuda
+                    </p>
                 </OpcoesBoxAzul>
             </BoxAzul>
             <BasePerfil>

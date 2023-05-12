@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import avatar from '../../imagens/AVATAR.svg'
 
 const FomularioContainer = styled.div`
     display: grid;
     height: 600px;
 `
+
+const Cabecalho = styled.div`
+    display: flex;
+` 
 
 const TituloPerfil = styled.h1`
     color: #181C32;
@@ -11,6 +16,11 @@ const TituloPerfil = styled.h1`
     margin: 30px;
     margin-bottom: 10px;
     padding: 10px;
+`
+
+const PerfilImage = styled.img`
+    width: 100px;
+    margin-left: 400px;
 `
 
 const FormBox = styled.div`
@@ -68,7 +78,12 @@ const Label = styled.label`
 function FormularioPerfil() {
     return (
         <FomularioContainer>
-            <TituloPerfil>Editar perfil</TituloPerfil>
+            <Cabecalho>
+                <TituloPerfil>Editar perfil</TituloPerfil>
+                <PerfilImage
+                    src={avatar}
+                />
+            </Cabecalho>
                 <form>
                     <FormBox>
                         <FormBlock1>

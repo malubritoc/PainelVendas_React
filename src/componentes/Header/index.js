@@ -1,5 +1,5 @@
 import logo from '../../imagens/logo.svg'
-import seubone from '../../imagens/seubone.png'
+import seubone from '../../imagens/seubone.svg'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.div`

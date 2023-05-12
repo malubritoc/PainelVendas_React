@@ -1,5 +1,5 @@
 import logo from '../../imagens/logo.svg'
-import seubone from '../../imagens/seubone.png'
+import seubone from '../../imagens/seubone.svg'
 import sair_img from '../../imagens/sair.svg'
 import download_img from '../../imagens/download.svg'
 import styled from 'styled-components'

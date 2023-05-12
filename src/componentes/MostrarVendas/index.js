@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import { getVendas } from '../../servicos/vendas';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import atualizar from '../../imagens/Atualizar.png'
+import buscar from '../../imagens/Buscar.png'
+import vendas_s from '../../imagens/cadastrarvendas_selec.png'
+import dashboard from '../../imagens/dashboard.svg'
+import perfil from '../../imagens/perfil.png'
+import comissoes from '../../imagens/comissoes.png'
 
 const VendasContainer = styled.div`
     display: flex;
@@ -11,7 +17,7 @@ const VendasContainer = styled.div`
 const Coluna = styled.div`
     display: grid;
     width: 200px;
-    height: 790px;
+    height: 855px;
     background-color: #EDEDED;
     border-right: 1px solid rgba(153, 159, 162, 0.5);
 `
@@ -26,6 +32,12 @@ const TituloColuna = styled.p`
     color: #878B8D
     
 `
+
+const IconsColuna = styled.img`
+    width: 10px;
+    margin-right: 5px;
+`
+
 const OpcoesColuna = styled.div`
     height: 70px;
     display: grid;
@@ -84,30 +96,68 @@ const TabelaVendas = styled.table`
     }
 `
 
-const BotaoNovaVenda = styled.button` 
-    width: 26px;
-    height: 26px;
+const Botao = styled.button` 
+    width: 30px;
+    height: 30px;
     background-color: #18243A;
     color: #FFF;
     cursor: pointer;
     font-size: 22px;
     align-text: center;
+    align-items: center;
+    margin: 30px;
+    margin-bottom: 10px;
+    margin-right:0px;
 `
 
-const BotaoEditarVenda = styled.button` 
-    width: 15px;
-    height: 15px;
+const BotaoBuscar = styled.button` 
+    width: 30px;
+    height: 30px;
+    background-color: #18243A;
     color: #FFF;
     cursor: pointer;
     font-size: 22px;
     align-text: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right:0px;
+    margin-top: 30px;
+`
+
+const BotaoExcluir = styled.button` 
+    width: 15px;
+    height: 15px;
+    background-color: #18243A;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 10px;
+    align-text: center;
+    align-items: center;
     padding: 0;
     margin-top: 0px;
     margin-left: 0px;
 `
 
-const ExcluirImage = styled.img`
+const Icones = styled.img`
     width: 15px;
+`
+
+const Cabecalho = styled.div`
+    display: flex;
+    width: 800px;
+`
+
+const Input = styled.input`
+    width: 100x;
+    height: 20px;
+    padding: 5px;
+    background-color: #FFF;
+    border-radius: 3px;
+    border: 0.75px solid #C1C2C2;
+    margin-top: 30px;
+    margin-left: 460px;
+
 `
 
 function PresentVendas() {
@@ -143,20 +193,53 @@ function PresentVendas() {
             <BoxColuna>
                 <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
                 <OpcoesColuna>
-                    <Link to='/usuario/2/dashboard' style={{ textDecoration: 'none', color: '#181C32' }}>Dashboard</Link>
+                    <Link to='/usuario/2/dashboard' style={{ display: 'flex',textDecoration: 'none', color: '#181C32' }}>
+                        <IconsColuna
+                            src={dashboard} 
+                        />
+                        Dashboard</Link>
                     <br/>
-                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#181C32' }}>Cadastrar venda</Link>
+                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#0988A8' }}>
+                        <IconsColuna
+                            src={vendas_s} 
+                        />
+                        Cadastrar venda</Link>
                     <br/>
-                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#181C32' }}>Perfil</Link>
-                    <p style={{ color: '#181C32'}}>Comissões</p>
+                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#181C32' }}>
+                        <IconsColuna
+                            src={perfil} 
+                        />
+                        Perfil</Link>
+                    <p style={{ color: '#181C32'}}>
+                        <IconsColuna
+                            src={comissoes} 
+                        />
+                        Comissões</p>
                 </OpcoesColuna>
             </BoxColuna>
             </Coluna>
             <ColunaFiltro />
             <VendasBox>
-                <Link to='/usuario/2/cadastrarvenda_new'>
-                    <BotaoNovaVenda>+</BotaoNovaVenda>
-                </Link>
+                <Cabecalho>
+                    <Link to='/usuario/2/cadastrarvenda_new'>
+                        <Botao>+</Botao>
+                    </Link>
+                    <Link to='/usuario/2/cadastrarvenda'>
+                        <Botao>
+                            <Icones
+                                src={atualizar}
+                                alt='atualizar'
+                            />
+                        </Botao>
+                    </Link>
+                    <Input placeholder="Pesquisar ID"/>
+                    <BotaoBuscar>
+                        <Icones
+                            src={buscar}
+                            alt='buscar'
+                        />
+                    </BotaoBuscar>
+                </Cabecalho>
                 <TabelaVendas>
                     <tr>
                         <th>Id</th>
@@ -222,11 +305,11 @@ function PresentVendas() {
                         <td>                        
                             {vendas.map((venda,i) => {
                             return (
-                            <p><BotaoEditarVenda>
+                            <p><BotaoExcluir>
                                     <a onClick={() => handleRemover(venda.id)}>
-                                        <ExcluirImage src ='https://cdn-icons-png.flaticon.com/512/1214/1214428.png'></ExcluirImage>
+                                        x
                                     </a>
-                                </BotaoEditarVenda></p>
+                                </BotaoExcluir></p>
                             ) 
                             })}
                         </td>

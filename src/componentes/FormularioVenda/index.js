@@ -81,7 +81,8 @@ function PresentFormularioVenda() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        postVenda(empresa, total, telefone, frete, quantidade)
+        await postVenda(empresa, total, telefone, frete, quantidade);
+        await console.log(postVenda)
     }
 
     return (

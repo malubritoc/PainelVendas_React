@@ -27,7 +27,7 @@ async function postVenda(empresa, total, telefone, frete, quantidade) {
         "compensada": 1,
     }
 
-    axios.post(`http://localhost:8000/vendas/`, data,{
+    await axios.post(`http://localhost:8000/vendas/`, data,{
         headers: {
         'Authorization': 'Bearer meu-token-de-autorizacao',
         'Content-Type': 'application/json'
@@ -38,7 +38,6 @@ async function postVenda(empresa, total, telefone, frete, quantidade) {
     )
     .catch(erro => 
         console.log(erro),
-        alert('Erro no cadastro da venda. Tente novamente mais tarde.'),
     )
 }
 

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
 import GraficoVendasPorTempo from "../GraficoVendasPorTempo";
+import vendas from '../../imagens/cadastrarvendas.png'
+import dashboard_s from '../../imagens/dashboard_selec.png'
+import perfil from '../../imagens/perfil.png'
+import comissoes from '../../imagens/comissoes.png'
 
 const DashboardContainer = styled.div`
     display: flex;
@@ -24,6 +28,12 @@ const TituloColuna = styled.p`
     margin: 0px;
     color: #878B8D;
 `
+
+const IconsColuna = styled.img`
+    width: 10px;
+    margin-right: 5px;
+`
+
 const OpcoesColuna = styled.div`
     height: 70px;
     display: grid;
@@ -43,6 +53,7 @@ const BoxGraficos = styled.div `
 `
 
 const BaseEvolucao = styled.div`
+    display: grid;
     background: #EEEEEE; 
     width: 900px;
     height: 215px;
@@ -79,16 +90,43 @@ const VerMais = styled.div`
     margin-right: 20px;
 `
 
+const TextoVerMais = styled.p`
+    color: #FFF;
+    width: 200px;
+    font-size: 12px;
+    margin-left: 200px;
+    margin-top: 7px;
+    background-color: #18243A;
+`
+
 const BaseInfos = styled.div`
     background: #EEEEEE; 
     width: 440px;
     height: 175px;
     padding: auto;
     display: flex;
-    align-items: center;
     border-radius: 20px 20px 0 0;
     box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.16);
     margin-right: 20px;
+`
+
+const BoxGrafico = styled.div`
+    margin: 15px;
+`
+
+const TituloGrafico = styled.h1` 
+    color: #181C32;
+    font-size: 16px;
+    height: 17px;
+    margin: 3px;
+`
+
+const SubTituloGrafico = styled.h1` 
+    color: #C6C6C6;
+    font-size: 10px;
+    height: 17px;
+    margin-left: 3px;
+    margin-bottom: 10px;
 `
 
 function PresentDashboard() {
@@ -98,34 +136,90 @@ function PresentDashboard() {
             <BoxColuna>
                 <TituloColuna>PAINEL ADMINISTRATIVO</TituloColuna>
                 <OpcoesColuna>
-                    <Link to='/usuario/2/dashboard' style={{ textDecoration: 'none', color: '#181C32' }}>Dashboard</Link>
+                    <Link to='/usuario/2/dashboard' style={{ display: 'flex',textDecoration: 'none', color: '#0988A8' }}>
+                        <IconsColuna
+                            src={dashboard_s} 
+                        />
+                        Dashboard</Link>
                     <br/>
-                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#181C32' }}>Cadastrar venda</Link>
+                    <Link to='/usuario/2/cadastrarvenda' style={{ textDecoration: 'none', color: '#181C32' }}>
+                        <IconsColuna
+                            src={vendas} 
+                        />
+                        Cadastrar venda</Link>
                     <br/>
-                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#181C32' }}>Perfil</Link>
-                    <p style={{ color: '#181C32'}}>Comissões</p>
+                    <Link to='/usuario/2/perfil' style={{ textDecoration: 'none', color: '#181C32' }}>
+                        <IconsColuna
+                            src={perfil} 
+                        />
+                        Perfil</Link>
+                    <p style={{ color: '#181C32'}}>
+                        <IconsColuna
+                            src={comissoes} 
+                        />
+                        Comissões</p>
                 </OpcoesColuna>
             </BoxColuna>
             </Coluna>
             <BoxGraficos>
             <BaseEvolucao>
-                <GraficoVendasPorTempo></GraficoVendasPorTempo>
+                <BoxGrafico>
+                    <TituloGrafico>Evolução de venda</TituloGrafico>
+                    <SubTituloGrafico>QUANTIDADE TOTAL - 00/00/0000</SubTituloGrafico>
+                    <GraficoVendasPorTempo/>
+                </BoxGrafico>
             </BaseEvolucao>
             <BoxInfos>
-                <BaseInfos />
-                <BaseInfos />
+                <BaseInfos>
+                    <BoxGrafico>
+                        <TituloGrafico>Número de produtos vendidos</TituloGrafico>
+                        <SubTituloGrafico>QUANTIDADE TOTAL - 00/00/0000</SubTituloGrafico>
+                    </BoxGrafico>
+                </BaseInfos>
+                <BaseInfos>
+                    <BoxGrafico>
+                        <TituloGrafico>Número de clientes</TituloGrafico>
+                        <SubTituloGrafico>QUANTIDADE TOTAL - MARÇO</SubTituloGrafico>
+                    </BoxGrafico>
+                </BaseInfos>
             </BoxInfos>
             <BoxVerMais>
-                <VerMais />
-                <VerMais />
+                <VerMais>
+                    <TextoVerMais>
+                        Ver tudo
+                    </TextoVerMais>
+                </VerMais>
+                <VerMais>
+                    <TextoVerMais>
+                        Ver tudo
+                    </TextoVerMais>
+                </VerMais>
             </BoxVerMais>
             <BoxInfos>
-                <BaseInfos />
-                <BaseInfos />
+                <BaseInfos>
+                    <BoxGrafico>
+                        <TituloGrafico>Pedidos compensados</TituloGrafico>
+                        <SubTituloGrafico>MARÇO</SubTituloGrafico>
+                    </BoxGrafico>
+                </BaseInfos>
+                <BaseInfos>
+                    <BoxGrafico>
+                        <TituloGrafico>Pedidos a compensar</TituloGrafico>
+                        <SubTituloGrafico>CLIENTES COM PAGAMENTO PENDENTE</SubTituloGrafico>
+                    </BoxGrafico>
+                </BaseInfos>
             </BoxInfos>
             <BoxVerMais>
-                <VerMais />
-                <VerMais />
+                <VerMais>
+                    <TextoVerMais style={{marginLeft: '160px'}}>
+                        Detalhar faturamento
+                    </TextoVerMais>
+                </VerMais>
+                <VerMais>
+                    <TextoVerMais>
+                        Ver tudo 
+                    </TextoVerMais>
+                </VerMais>
             </BoxVerMais>
             </BoxGraficos>
         </DashboardContainer>
